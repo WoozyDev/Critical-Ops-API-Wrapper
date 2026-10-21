@@ -6,6 +6,7 @@ This is a wrapper which is based on the [Critical Ops Public API](https://critic
 
 This wrapper implements all the endpoints of the public api.
 - Profiles
+- Weapon Stats
 - Autohost
 - Server Status
 - Leaderboards
