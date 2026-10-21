@@ -1,6 +1,10 @@
-# Critical Ops Public API Node.JS TypeScript Wrapper
+# Critical Ops Public API Wrappers
 
-This is a wrapper which is based on the [Critical Ops Public API](https://criticalopsgame.com/api/) written in TypeScript for developers who use [Node.JS runtime](https://nodejs.org/) (for example [discord bots](https://discord.com/developers/docs)).
+This repository includes wrappers for the [Critical Ops Public API](https://criticalopsgame.com/api/), including:
+- JavaScript
+- TypeScript
+- Python (soon)
+- ...
 
 # Implementation
 
@@ -11,10 +15,6 @@ This wrapper implements all the endpoints of the public api.
 - Server Status
 - Leaderboards
 - Match History
-
-# Ratelimit
-
-The ratelimit is always updated into the `ratelimitInfo` variable, which includes `limit`, `remaining` and `reset` timestamp (in seconds), but also `after` which tells you when you can request again after being ratelimited.
 
 # Unix Timestamps
 
