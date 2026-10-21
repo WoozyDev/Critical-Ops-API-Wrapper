@@ -22,4 +22,4 @@ All the unix timestamps in the public api are in seconds, never in milliseconds.
 
 # Use
 
-This API Wrapper was made by [@woozy666](https://discord.com/users/723553355753848832) and anyone can use it as long as they abide by the Critical Force [Terms Of Use](https://criticalopsgame.com/terms/) and [Fan Content Policy](https://criticalopsgame.com/fan-content-policy/).
+These API wrappers was made by [@woozy666](https://discord.com/users/723553355753848832) and anyone can use it as long as they abide by the Critical Force [Terms Of Use](https://criticalopsgame.com/terms/) and [Fan Content Policy](https://criticalopsgame.com/fan-content-policy/).
