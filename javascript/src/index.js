@@ -210,22 +210,4 @@ class CopsClient {
     }
 }
 
-const API = {
-    setToken,
-    setApiUrl,
-    ratelimitInfo,
-    getProfileById,
-    getProfileByIds,
-    getProfileByUsername,
-    getProfileByUsernames,
-    getPlayerMatches,
-    getMatches,
-    getServers,
-    getWeaponStats,
-    createAutohost,
-    sendAutohostCommand,
-    getAutohosts,
-    getLeaderboards
-}
-
-module.exports = API;
+module.exports = CopsClient;
