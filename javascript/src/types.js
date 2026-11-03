@@ -410,6 +410,33 @@ const Commands = {
  * @typedef {'mmr' | 'kills' | 'deaths' | 'assists' | 'matches' | 'wins' | 'losses' | 'xp' | 'mvp'} LeaderboardType
  */
 
+
+/**
+ * @typedef {Object} RatelimitInfo
+ * @property {number} limit
+ * @property {number} remaining
+ * @property {number} reset
+ * @property {number | undefined} retry_after
+ */
+
+/**
+ * @typedef {Object} RatelimitInfo
+ * @property {number} limit
+ * @property {number} remaining
+ * @property {number} reset
+ * @property {number | undefined} retry_after
+ */
+
+/**
+ * @typedef {Object} CacheValue
+ * @property {any} data
+ * @property {number} TTL
+ */
+
+/**
+ * @typedef {Record<string, CacheValue>} ClientCache
+ */
+
 module.exports.UserType = UserType;
 module.exports.BanReason = BanReason;
 module.exports.BanType = BanType;
