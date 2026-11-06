@@ -1,6 +1,6 @@
 const axios = require('axios');
 const { PlayerMatchesResponse, MatchesFetchResponse, ProfileResponse, ServersStatusResponse, WeaponStatsResponse, AutohostControlResponse, AutohostPollResponse, LeaderboardsResponse, GameType, AutohostCreateRequest, AutohostControlRequest, RatelimitInfo, ClientCache } = require('./types');
-let EXPIRE_TTL_MS = 1000 * 60 * 2;
+let EXPIRE_TTL_MS = 1000 * 60 * 1;
 
 class CopsClient {
     /** @type {string} */
@@ -56,21 +56,12 @@ class CopsClient {
                 return req.data;
             }
             if(method == 'POST') {
-                if(this.cache[path] && this.cache[path].TTL < Date.now())
-                    return this.cache[path].data;
-
-                delete this.cache[path];
-
                 let req = await axios.post(`${api_url}${path}`, data, {
                     headers: {
                         'Authorization': `Bearer ${token}`,
                         'Content-Type': 'application/json'
                     }
                 });
-                this.cache[path] = {
-                    data: req.data,
-                    TTL: Date.now() + EXPIRE_TTL_MS
-                }
                 ratelimitInfo.limit = parseInt(req.headers['x-ratelimit-limit']);
                 ratelimitInfo.remaining = parseInt(req.headers['x-ratelimit-remaining']);
                 ratelimitInfo.reset = parseInt(req.headers['x-ratelimit-reset']);

@@ -9,7 +9,7 @@ type RatelimitInfo = {
     retry_after?: number;
 }
 
-let EXPIRE_TTL_MS = 1000 * 60 * 2;
+let EXPIRE_TTL_MS = 1000 * 60 * 1;
 
 export class CopsClient {
     token: string;
@@ -59,10 +59,6 @@ export class CopsClient {
                 return req.data as T;
             }
             if (method == 'POST') {
-                if(this.cache[path] && this.cache[path].TTL < Date.now())
-                    return this.cache[path].data;
-
-                delete this.cache[path];
 
                 let req = await axios.post(`${this.api_url}${path}`, data, {
                     headers: {
@@ -70,11 +66,6 @@ export class CopsClient {
                         'Content-Type': 'application/json'
                     }
                 });
-
-                this.cache[path] = {
-                    data: req.data as T,
-                    TTL: Date.now() + EXPIRE_TTL_MS
-                }
                 this.ratelimitInfo.limit = parseInt(req.headers['x-ratelimit-limit']);
                 this.ratelimitInfo.remaining = parseInt(req.headers['x-ratelimit-remaining']);
                 this.ratelimitInfo.reset = parseInt(req.headers['x-ratelimit-reset']);
