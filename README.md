@@ -3,7 +3,7 @@
 This repository includes wrappers for the [Critical Ops Public API](https://criticalopsgame.com/api/), including:
 - JavaScript
 - TypeScript
-- Python (soon)
+- Python
 - ...
 
 # Implementation

@@ -1,6 +1,6 @@
 const axios = require('axios');
 const { PlayerMatchesResponse, MatchesFetchResponse, ProfileResponse, ServersStatusResponse, WeaponStatsResponse, AutohostControlResponse, AutohostPollResponse, LeaderboardsResponse, GameType, AutohostCreateRequest, AutohostControlRequest, RatelimitInfo, ClientCache } = require('./types');
-let EXPIRE_TTL_MS = 1000 * 60 * 1;
+let EXPIRE_TTL_SEC = 60;
 
 class CopsClient {
     /** @type {string} */
@@ -34,10 +34,13 @@ class CopsClient {
     async request(method, path, data) {
         try {
             if(method == 'GET') {
-                if(this.cache[path] && this.cache[path].TTL < Date.now())
-                    return this.cache[path].data;
+                if(this.cache[path]) {
+                    if(this.cache[path].TTL > Math.floor(Date.now() / 1000)) {
+                        return this.cache[path].data;
+                    }
+                    delete this.cache[path];
+                }
 
-                delete this.cache[path];
 
                 let req = await axios.get(`${api_url}${path}`, {
                     headers: {
@@ -47,7 +50,7 @@ class CopsClient {
                 });
                 this.cache[path] = {
                     data: req.data,
-                    TTL: Date.now() + EXPIRE_TTL_MS
+                    TTL: Math.floor(Date.now() / 1000) + EXPIRE_TTL_SEC
                 }
                 ratelimitInfo.limit = parseInt(req.headers['x-ratelimit-limit']);
                 ratelimitInfo.remaining = parseInt(req.headers['x-ratelimit-remaining']);
