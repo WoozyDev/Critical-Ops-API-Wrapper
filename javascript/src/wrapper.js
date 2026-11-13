@@ -126,7 +126,7 @@ class CopsClient {
      * @returns {Promise<ProfileResponse>}
      */
     async getProfileById(user_id) {
-        return (getProfileByIds([user_id]))[0];
+        return (await getProfileByIds([user_id]))[0];
     }
 
     /**
@@ -144,7 +144,7 @@ class CopsClient {
      * @returns {Promise<ProfileResponse>}
      */
     async getProfileByUsername(username) {
-        return (getProfileByUsernames([username]))[0];
+        return (await getProfileByUsernames([username]))[0];
     }
 
     /**

@@ -98,7 +98,7 @@ export class CopsClient {
     }
 
     async getProfileById(user_id: number) {
-        return (this.getProfileByIds([user_id]))[0];
+        return (await this.getProfileByIds([user_id]))[0];
     }
 
     async getProfileByUsernames(usernames: string[]) {
@@ -111,7 +111,7 @@ export class CopsClient {
     }
 
     async getProfileByUsername(username: string) {
-        return (this.getProfileByUsernames([username]))[0];
+        return (await this.getProfileByUsernames([username]))[0];
     }
 
     async getServers() {
